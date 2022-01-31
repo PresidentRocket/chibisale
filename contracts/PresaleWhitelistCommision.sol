@@ -1232,14 +1232,14 @@ contract ScrawnyViking is ERC721Enumerable, Ownable {
   string public baseURI;
   string public baseExtension = ".json";
   string public notRevealedUri;
-  uint256 public cost = .5 ether;
-  uint256 public maxSupply = 10000;
-  uint256 public maxMintAmount = 20;
+  uint256 public cost = .06 ether;
+  uint256 public maxSupply = 5000;
+  uint256 public maxMintAmount = 8;
   uint256 public nftPerAddressLimit = 5;
   bool public paused = false;
   bool public revealed = false;
   bool public onlyWhitelisted = true;
-  address payable commissions = payable(0x1Cf11bbD83cab8c85426566d820B3bf2DB4b7827);
+  // address payable commissions = payable(0x69D67A6677Ee7886604AF125eb17ACfa5Cc5b88b);
   address[] public whitelistedAddresses;
   mapping(address => uint256) public addressPresaleMinted;
 
@@ -1281,8 +1281,8 @@ contract ScrawnyViking is ERC721Enumerable, Ownable {
       _safeMint(msg.sender, supply + i);
     }
     
-    (bool success, ) = payable(commissions).call{value: msg.value * 1 / 100}("");
-    require(success);
+//    (bool success, ) = payable(commissions).call{value: msg.value * 1 / 100}("");
+//  require(success);
   }
   
   function isWhitelisted(address _user) public view returns (bool) {

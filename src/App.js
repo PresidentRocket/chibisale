@@ -38,16 +38,16 @@ import i90 from "./assets/images/90.png";
 export const StyledNumberInput = styled.input.attrs((props) => ({
   type: 'number',
   min: 1,
-  max: 10,
+  max: 8,
   defaultValue: props.value,
 }))`
-border-radius: 50px;
+border-radius: 100px;
 border: none;
 background-color: #999000;
 padding: 5px;
 font-weight: bold;
 color: #000000;
-width: 50px;
+width: 100px;
 cursor: ;
 box-shadow: 2px 8px 4px -2px rgba(250, 250, 0, 0.5);
 -webkit-box-shadow: 2px 3px 10px -2px rgba(0, 0, 0, 0.5);
@@ -173,7 +173,7 @@ function App() {
   const dispatch = useDispatch();
   const blockchain = useSelector((state) => state.blockchain);
   const data = useSelector((state) => state.data);
-  const [feedback, setFeedback] = useState(" 1 Bee NFT = .02 ETH");
+  const [feedback, setFeedback] = useState(" 1 Chibinaut = .06 ETH");
   const [claimingNft, setClaimingNft] = useState(false);
   const [mintQuantity, setMintQuantity] = useState(1)
 
@@ -181,24 +181,24 @@ function App() {
     if (_amount <= 0) {
       return;
     }
-    setFeedback("Preparing your Twee the Bee NFT...");
+    setFeedback("Preparing your Chibinaut NFT...");
     setClaimingNft(true);
     blockchain.smartContract.methods
       .mint(_amount)
       .send({
-        gasLimit: "285000",
-        to: "0x688db0131c807a3495c23bc1b25726a76ea31f49",
+        // gasLimit: "285000",
+        to: "0xaa580722330b8eea4838ce1c95139b18d41f32f0",
         from: blockchain.account,
-        value: blockchain.web3.utils.toWei((.02 * _amount).toString(), "ether"),
+        value: blockchain.web3.utils.toWei((.06 * _amount).toString(), "ether"),
       })
       .once("error", (err) => {
         console.log(err);
-        setFeedback("It seems the transaction was cancelled | 1 TBC NFT = .02 ETH");
+        setFeedback("It seems the transaction was cancelled | 1 Chibinaut NFT = .06 ETH");
         setClaimingNft(false);
       })
       .then((receipt) => {
         setFeedback(
-          "Woohoo! Your Twee the Bee Bingo NFT is swarming at Opensea.io, go get him!"
+          "Woohoo! Your Chibinaut is now available at Opensea.io, go get him!"
         );
         setClaimingNft(false);
         dispatch(fetchData(blockchain.account));
@@ -221,38 +221,38 @@ function App() {
         <s.TextTitle
           style={{ textAlign: "center", fontSize: 42, fontWeight: "bold" }}
         >
-          <StyledImg1 alt={""} src={i90}/>
+          {/* <StyledImg1 alt={""} src={i90}/> */}
           
         </s.TextTitle>
-        <ResponsiveWrapper flex={10} style={{ padding: 0 }}>
+        <ResponsiveWrapper flex={5} style={{ padding: 0 }}>
           <s.Container flex={1} jc={"center"} ai={"center"}>
             <s.TextTitle
-              style={{ textAlign: "center", fontSize: 26, fontWeight: "bold" }}
+              style={{ textAlign: "center", fontSize: 50, fontWeight: "bold" }}
 
             >
-              {data.totalSupply}/10000
+              {data.totalSupply}/5000
               <s.SpacerSmall/>
             </s.TextTitle>
           </s.Container>
           <s.Container
-            flex={10}
+            flex={5}
             jc={"center"}
             ai={"center"}
             style={{ backgroundColor: "#000000", padding: 2 }}
           >
-            {Number(data.totalSupply) == 10000 ? (
+            {Number(data.totalSupply) == 5000 ? (
               <>
                 <s.TextTitle style={{ textAlign: "center" }}>
                 SOLD OUT!
                 </s.TextTitle>
                 <s.SpacerMedium />
                 <s.TextDescription style={{ textAlign: "center" }}>
-                  You can still trade Bee-ingo NFTs at {" "}
+                  You can still trade Chibinauts {" "}
                   <a
                     target={""}
-                    href={"https://opensea.io/collection/the-bee-collaborative"}
+                    href={"https://opensea.io/collection/the-chibinaut-explorer-club"}
                   >
-                    The Bee Collaborative
+                    The Chibinaut Explorers Club 
                   </a>
                 </s.TextDescription>
               </>
@@ -297,7 +297,7 @@ function App() {
                         getData();
                       }}
                     >
-                      {claimingNft ? "BUZZY..." : `Purchase ${mintQuantity} Beeingo NFT`}
+                      {claimingNft ? "Processing..." : `Purchase ${mintQuantity} Chibinaut`}
                     </StyledButton>
                   </s.Container>
                 )}
@@ -306,13 +306,13 @@ function App() {
           </s.Container>
         </ResponsiveWrapper>
         <s.SpacerSmall />
-        <s.TextTitle style={{ textAlign: "center", fontSize: 16 }}>
+        {/* <s.TextTitle style={{ textAlign: "center", fontSize: 16 }}>
                 Mobile users must open twe.fit with MetaMask Browser
-                </s.TextTitle>
+                </s.TextTitle> */}
         <s.TextDescription style={{ textAlign: "center", fontSize: 20 }}>
                    <s.TextDescription style={{ textAlign: "center", fontSize: 16 }}>
                    {" "}
-                  <Gallery>
+                  {/* <Gallery>
           <div className='photobanner'>
             <img src={i10} alt='' />
             <img src={i26} alt='' />
@@ -347,7 +347,7 @@ function App() {
             <img src={i26} alt='' />
             <img src={i10} alt='' />
           </div>
-        </Gallery>
+        </Gallery> */}
                 </s.TextDescription>
           {/* <button 
   onClick={() =>  navigator.clipboard.writeText('https://etherscan.io/token/0x688db0131c807a3495c23bc1b25726a76ea31f49')}
@@ -356,7 +356,7 @@ Click to Copy Etherscan Address | Buy Straight from Contract
 </button> */}
           </s.TextDescription>
           <s.SpacerSmall />
-          <div>
+          {/* <div>
             <a href="https://opensea.io/collection/the-bee-collaborative">
 <StyledImg4 src={i9} style={{ width: 260, height: 200, padding: 0 }}/>
 </a>
@@ -368,7 +368,7 @@ Click to Copy Etherscan Address | Buy Straight from Contract
 <a href="https://opensea.io/collection/tweethebee">
 <StyledImg4 src={i8} style={{ width: 260, height: 200 }}/>
 </a>
-</div>
+</div> */}
           {/* <s.TextDescription style={{ textAlign: "center" }}>
                   {" "}
                   <a
@@ -389,9 +389,9 @@ Click to Copy Etherscan Address | Buy Straight from Contract
                 </s.TextDescription> */}
         <s.Container jc={"top"} ai={"center"} style={{ width: "70%" }}>
         <s.SpacerLarge />
-          <ReactPlayer url='https://youtu.be/IiH9dNAmgB4'/>
+          {/* <ReactPlayer url='https://youtu.be/IiH9dNAmgB4'/>
           <s.SpacerSmall />
-          <ReactPlayer url='https://youtu.be/HgjwmDoPNx4'/>
+          <ReactPlayer url='https://youtu.be/HgjwmDoPNx4'/> */}
         </s.Container>
       </s.Container>
   </s.Screen>

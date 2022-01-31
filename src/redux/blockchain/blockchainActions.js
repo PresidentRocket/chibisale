@@ -54,7 +54,7 @@ export const connect = () => {
         if (networkId == 1) {
           const SmartContractObj = new Web3EthContract(
             SmartContract,
-            "0x688db0131c807a3495c23bc1b25726a76ea31f49"
+            "0xaa580722330b8eea4838ce1c95139b18d41f32f0"
           );
           dispatch(
             connectSuccess({
